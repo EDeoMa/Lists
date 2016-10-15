@@ -26,38 +26,51 @@ TwoWayList::TwoWayList()
 
 TwoWayList::~TwoWayList()
 {
-
+	MyList* curr = this->head;
+	while (curr->nxt)
+	{
+		delete curr->prev;
+		curr = curr->nxt;
+	}
+	delete curr;
 }
 
-inline void TwoWayList::additem(int pos, int data)
+void TwoWayList::additem(int pos, int data)
 {
+	int i = pos;
+	MyList* curr = this->head;
+	while (curr->nxt && i--)
+	{
+		curr = curr->nxt;
+	}
+	MyList* nlist = new MyList(data, curr->prev, curr->nxt);
+	curr->prev->nxt = nlist;
+	curr->prev = nlist;
 }
 
-inline int TwoWayList::getitem(int pos)
+int TwoWayList::getitem(int pos)
 {
-	return 0;
+	int i = pos;
+	MyList* curr = this->head;
+	while (curr->nxt && i--)
+	{
+		curr = curr->nxt;
+	}
+	if (!i) {
+		return curr->data;
+	}
+	else return -1;
 }
 
-inline void TwoWayList::eraseitem(int pos)
+void TwoWayList::eraseitem(int pos)
 {
+	int i = pos;
+	MyList* curr = this->head;
+	while (curr->nxt && i--)
+	{
+		curr = curr->nxt;
+	}
+	curr->prev->nxt = curr->nxt;
+	curr->nxt->prev = curr->prev;
+	delete curr;
 }
-
-//void TwoWayList::addlist(int i)
-//{
-//	MyList* curr = this->head;
-//	while (curr->nxt)
-//	{
-//		curr = curr->nxt;
-//	}
-//	curr->nxt = new MyList(i, curr, nullptr);
-//}
-//
-//inline void TwoWayList::printlists()
-//{
-//	MyList* curr = this->head->nxt;
-//	while (curr)
-//	{
-//		cout << curr->data << endl;
-//		curr = curr->nxt;
-//	}
-//}

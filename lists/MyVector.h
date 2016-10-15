@@ -25,6 +25,7 @@ MyVector::MyVector()
 
 MyVector::~MyVector()
 {
+	delete[] this->mas;
 }
 
 void MyVector::additem(int pos, int data)
@@ -50,11 +51,15 @@ void MyVector::additem(int pos, int data)
 		cout << stpclock << endl;
 }
 
-inline int MyVector::getitem(int pos)
+int MyVector::getitem(int pos)
 {
-	return 0;
+	return this->mas[pos];
 }
 
-inline void MyVector::eraseitem(int pos)
+void MyVector::eraseitem(int pos)
 {
+	for (int i = pos; i < this->wrlen-1; i++) {
+		this->mas[pos] = this->mas[pos + 1];
+	}
+	wrlen--;
 }
