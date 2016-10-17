@@ -1,5 +1,5 @@
 #pragma once
-#include "TwoWayList.h"
+const int minimumSize = 10;
 
 class MyVector
 {
@@ -7,59 +7,77 @@ public:
 	MyVector();
 	~MyVector();
 	void additem(int pos, int data);
-	int getitem(int pos);
+	int operator[] (int pos);
 	void eraseitem(int pos);
-	int wrlen;
-	int len;
+	int capacity();
+	int size();
 
 private:
-	int* mas;
+	int checkpos(int);
+	int _size;
+	int _capacity;
+	int* _array;
 };
 
 MyVector::MyVector()
 {
-	mas = new int[10];
-	len = 10;
-	wrlen = 0;
+	_array = new int[minimumSize];
+	_capacity = minimumSize;
+	_size = 0;
 }
 
 MyVector::~MyVector()
 {
-	delete[] this->mas;
+	delete[] this->_array;
 }
 
 void MyVector::additem(int pos, int data)
 {
-	unsigned int strclock = clock();
-	if (pos<wrlen+1 && pos<len) {
-		this->mas[pos] = data;
-		wrlen++;
-	}
-	if (pos - len == 1) {
-		int* mas1 = new int[len * 2];
-		len *= 2;
-		for (int i = 0; i < len; i++) {
-			mas1[i] = this->mas[i];
+	if (!checkpos(pos)) {
+		if (pos < _size + 1 && pos < _capacity) {
+			this->_array[pos] = data;
+			_size++;
 		}
-		delete[] mas;
-		mas = mas1;
-		this->mas[pos] = data;
-		wrlen++;
+		if (pos - _capacity == 1) {
+			int* temp_array = new int[_capacity * 2];
+			_capacity *= 2;
+			for (int i = 0; i < _capacity; i++) {
+				temp_array[i] = this->_array[i];
+			}
+			delete[] _array;
+			_array = temp_array;
+			this->_array[pos] = data;
+			_size++;
+		}
 	}
-	unsigned int stpclock = clock()-strclock;
-	if (stpclock)
-		cout << stpclock << endl;
 }
 
-int MyVector::getitem(int pos)
+int MyVector::operator[](int pos)
 {
-	return this->mas[pos];
+	return this->_array[pos];
 }
 
 void MyVector::eraseitem(int pos)
 {
-	for (int i = pos; i < this->wrlen-1; i++) {
-		this->mas[pos] = this->mas[pos + 1];
+	for (int i = pos; i < this->_size-1; i++) {
+		this->_array[pos] = this->_array[pos + 1];
 	}
-	wrlen--;
+	_size--;
+}
+
+inline int MyVector::capacity()
+{
+	return this->_capacity;
+}
+
+inline int MyVector::size()
+{
+	return this->_size;
+}
+
+int MyVector::checkpos(int pos)
+{
+	if (pos>=0 && pos<=this->capacity() && pos<=this->size())
+		return 0;
+	else return 1;
 }

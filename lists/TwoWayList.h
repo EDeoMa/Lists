@@ -1,7 +1,6 @@
 #pragma once
 #include "MyList.h"
-#include <ctime>
-#include <iostream>
+
 
 using namespace std;
 

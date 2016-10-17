@@ -1,27 +1,26 @@
 #include "MyVector.h"
+#include "TwoWayList.h"
+#include <ctime>
+#include <iostream>
 
 int  main() {
-	TwoWayList mlist;
-	MyVector mvector;
-	int inp, ans = 1;
-	cout << "Continue?\n";
-	cin >> ans;
-	int i = 1000000000;
-	while (i--) {
-		//cout << "Add num: "<<i<<endl;
-		int j;
-		if (mvector.wrlen < mvector.len)
-			j = mvector.wrlen;
-		else j = mvector.wrlen + 1;
-		mvector.additem(j, i);
-		//cout << "Continue?\n";
-		//cin >> ans;
+	unsigned long long int i = 1;
+	while (i <= 1000000000000000000) {
+		MyVector mvector;
+		cout << i << ": ";
+		unsigned int start_time = clock();
+		int z=i;
+		while (z--) {
+			int j;
+			if (mvector.size() < mvector.capacity())
+				j = mvector.size();
+			else j = mvector.size() + 1;
+			mvector.additem(j, z);
+		}
+		unsigned int stop_time = clock();
+		cout << (stop_time - start_time) << endl;
+		i *= 10;
 	}
-	/*for (int i = 0; i < 100; i++) {
-		mlist.additem(i, i);
-		mvector.additem(i, i);
-	}*/
-	
 	system("Pause");
 	return 0;
 }
