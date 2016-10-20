@@ -1,9 +1,11 @@
-#include "MyVector.h"
-#include "TwoWayList.h"
 #include <ctime>
 #include <iostream>
+#include "MyVector.h"
+#include "TwoWayList.h"
 
-const int max_element = 13;
+using namespace std;
+
+const int max_element = 1000000;
 
 void print_vector(MyVector& mvector) {
 	for (int i = 0; i < mvector.size(); i++) {
@@ -12,39 +14,106 @@ void print_vector(MyVector& mvector) {
 	cout << endl;
 }
 
-int  main() {
-	unsigned long long int i = 1;
-	MyVector mvector;
-	while (i <= max_element) {
-		mvector.push_back(i);
-		/*cout << i << ": ";
-		unsigned int start_time = clock();*/
-		/*int z=i;
-		while (z--) {
-			int j;
-			if (mvector.size() < mvector.capacity())
-				j = mvector.size();
-			else j = mvector.size() + 1;
-			mvector.insert(j, z);
-		}*/
-		/*unsigned int stop_time = clock();
-		cout << (stop_time - start_time) << endl;*/
-		i += 1;
+void print_list(TwoWayList& mlist) {
+	for (int i = 0; i < mlist.size(); i++) {
+		cout << mlist.getitem(i) << " ";
 	}
-	print_vector(mvector);
-	mvector.insert(0, 100);
-	print_vector(mvector);
-	mvector.insert(ceil(mvector.size()/2), 100);
-	print_vector(mvector);
-	mvector.push_back(100);
-	print_vector(mvector);
-	mvector.erase(0);
-	print_vector(mvector);
-	mvector.erase(ceil(mvector.size() / 2));
-	print_vector(mvector);
-	mvector.pop_back();
-	print_vector(mvector);
+	cout << endl;
+}
 
+void printall(MyVector& mvector, TwoWayList& mlist) {
+	cout << "New:" << endl << "Vector: ";
+	print_vector(mvector);
+	cout << "List: ";
+	print_list(mlist);
+}
+
+int  main() {
+	MyVector mvector;
+	TwoWayList mlist;
+	for (int i = 0; i <= max_element; i++) {
+		mvector.push_back(i);
+		mlist.push_back(i);
+	}
+	unsigned int start_clock, time_passed;
+
+	/*cout << "Starting with:" << endl<<"Vector: ";
+	print_vector(mvector);
+	cout << "List: ";
+	print_list(mlist);*/
+
+	cout << "Front insert:" << endl;
+	start_clock = clock();
+	mvector.insert(0, 100);
+	time_passed = clock() - start_clock;
+	cout << "Vector took: " << time_passed << "\nList took: ";
+	start_clock = clock();
+	mlist.push_front(100);
+	time_passed = clock() - start_clock;
+	cout << time_passed << endl;
+
+	//printall(mvector, mlist);
+
+	cout << "Middle insert:" << endl;
+	start_clock = clock();
+	mvector.insert(ceil(mvector.size()/2), 100);
+	time_passed = clock() - start_clock;
+	cout << "Vector took: " << time_passed << "\nList took: ";
+	start_clock = clock();
+	mlist.insert(ceil(mlist.size() / 2), 100);
+	time_passed = clock() - start_clock;
+	cout << time_passed << endl;
+
+	//printall(mvector, mlist);
+
+	cout << "Back insert:" << endl;
+	start_clock = clock();
+	mvector.push_back(100);
+	time_passed = clock() - start_clock;
+	cout << "Vector took: " << time_passed << "\nList took: ";
+	start_clock = clock();
+	mlist.push_back(100);
+	time_passed = clock() - start_clock;
+	cout << time_passed << endl;
+
+	//printall(mvector, mlist);
+
+	cout << "Front erase:" << endl;
+	start_clock = clock();
+	mvector.erase(0);
+	time_passed = clock() - start_clock;
+	cout << "Vector took: " << time_passed << "\nList took: ";
+	start_clock = clock();
+	mlist.pop_front();
+	time_passed = clock() - start_clock;
+	cout << time_passed << endl;
+
+	//printall(mvector, mlist);
+
+	cout << "Middle erase:" << endl;
+	start_clock = clock();
+	mvector.erase(ceil(mvector.size() / 2));
+	time_passed = clock() - start_clock;
+	cout << "Vector took: " << time_passed << "\nList took: ";
+	start_clock = clock();
+	mlist.erase(ceil(mlist.size() / 2));
+	time_passed = clock() - start_clock;
+	cout << time_passed << endl;
+
+	//printall(mvector, mlist);
+
+	cout << "Back erase:" << endl;
+	start_clock = clock();
+	mvector.pop_back();
+	time_passed = clock() - start_clock;
+	cout << "Vector took: " << time_passed << "\nList took: ";
+	start_clock = clock();
+	mlist.pop_back();
+	time_passed = clock() - start_clock;
+	cout << time_passed << endl;
+
+	//printall(mvector, mlist);
+	
 	system("Pause");
 	return 0;
 }
