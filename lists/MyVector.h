@@ -6,9 +6,11 @@ class MyVector
 public:
 	MyVector();
 	~MyVector();
-	void additem(int pos, int data);
-	int operator[] (int pos);
-	void eraseitem(int pos);
+	void insert(int, int);
+	int operator[] (int);
+	void erase(int);
+	void push_back(int);
+	void pop_back();
 	int capacity();
 	int size();
 
@@ -31,23 +33,30 @@ MyVector::~MyVector()
 	delete[] this->_array;
 }
 
-void MyVector::additem(int pos, int data)
+void MyVector::insert(int pos, int data)
 {
 	if (!checkpos(pos)) {
-		if (pos < _size + 1 && pos < _capacity) {
-			this->_array[pos] = data;
-			_size++;
-		}
-		if (pos - _capacity == 1) {
+		if (this->_capacity == this->_size) {
 			int* temp_array = new int[_capacity * 2];
 			_capacity *= 2;
-			for (int i = 0; i < _capacity; i++) {
+			for (int i = 0; i < pos; i++) {
+				temp_array[i] = this->_array[i];
+			}
+			temp_array[pos] = data;
+			for (int i = pos+1; i < _capacity; i++) {
 				temp_array[i] = this->_array[i];
 			}
 			delete[] _array;
-			_array = temp_array;
+			this->_array = temp_array;
 			this->_array[pos] = data;
-			_size++;
+			this->_size++;
+		}
+		else {
+			for (int i = _size; i > pos; i--) {
+				this->_array[i] = this->_array[i-1];
+			}
+			this->_array[pos] = data;
+			this->_size++;
 		}
 	}
 }
@@ -57,12 +66,22 @@ int MyVector::operator[](int pos)
 	return this->_array[pos];
 }
 
-void MyVector::eraseitem(int pos)
+void MyVector::erase(int pos)
 {
-	for (int i = pos; i < this->_size-1; i++) {
-		this->_array[pos] = this->_array[pos + 1];
+	for (int i = pos; i < this->_size - 1; i++) {
+		this->_array[i] = this->_array[i + 1];
 	}
 	_size--;
+}
+
+void MyVector::push_back(int value)
+{
+	this->insert(this->size(), value);
+}
+
+void MyVector::pop_back()
+{
+	this->erase(this->size()-1);
 }
 
 inline int MyVector::capacity()
@@ -77,7 +96,7 @@ inline int MyVector::size()
 
 int MyVector::checkpos(int pos)
 {
-	if (pos>=0 && pos<=this->capacity() && pos<=this->size())
+	if (pos>=0 && pos<=this->capacity()+1 && pos<=this->size()+1)
 		return 0;
 	else return 1;
 }
