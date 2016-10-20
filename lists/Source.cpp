@@ -5,7 +5,7 @@
 
 using namespace std;
 
-const int max_element = 1000000000;
+const int max_element = 100000;
 
 void print_vector(MyVector& mvector) {
 	for (int i = 0; i < mvector.size(); i++) {
@@ -31,12 +31,19 @@ void printall(MyVector& mvector, TwoWayList& mlist) {
 int  main() {
 	MyVector mvector;
 	TwoWayList mlist;
+	int start_clock, time_passed;
+	start_clock = clock();
 	for (int i = 0; i <= max_element; i++) {
 		mvector.push_back(i);
+	}
+	time_passed = clock() - start_clock;
+	cout << "Vector took: " << time_passed << "\nList took: ";
+	start_clock = clock();
+	for (int i = 0; i <= max_element; i++) {
 		mlist.push_back(i);
 	}
-	int start_clock, time_passed;
-
+	time_passed = clock() - start_clock;
+	cout << time_passed << endl;
 	/*cout << "Starting with:" << endl<<"Vector: ";
 	print_vector(mvector);
 	cout << "List: ";
