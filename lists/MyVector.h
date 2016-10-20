@@ -38,7 +38,6 @@ void MyVector::insert(int pos, int data)
 	if (!checkpos(pos)) {
 		if (this->_capacity == this->_size) {
 			int* temp_array = new int[_capacity * 2];
-			_capacity *= 2;
 			for (int i = 0; i < pos; i++) {
 				temp_array[i] = this->_array[i];
 			}
@@ -46,6 +45,7 @@ void MyVector::insert(int pos, int data)
 			for (int i = pos+1; i < _capacity; i++) {
 				temp_array[i] = this->_array[i];
 			}
+			_capacity *= 2;
 			delete[] _array;
 			this->_array = temp_array;
 			this->_array[pos] = data;

@@ -5,7 +5,7 @@
 
 using namespace std;
 
-const int max_element = 1000000;
+const int max_element = 1000000000;
 
 void print_vector(MyVector& mvector) {
 	for (int i = 0; i < mvector.size(); i++) {
@@ -35,7 +35,7 @@ int  main() {
 		mvector.push_back(i);
 		mlist.push_back(i);
 	}
-	unsigned int start_clock, time_passed;
+	int start_clock, time_passed;
 
 	/*cout << "Starting with:" << endl<<"Vector: ";
 	print_vector(mvector);
