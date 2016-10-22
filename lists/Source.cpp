@@ -5,7 +5,7 @@
 
 using namespace std;
 
-const int max_element = 100000;
+const int max_element = 1000000;
 
 void print_vector(MyVector& mvector) {
 	for (int i = 0; i < mvector.size(); i++) {
@@ -16,7 +16,7 @@ void print_vector(MyVector& mvector) {
 
 void print_list(TwoWayList& mlist) {
 	for (int i = 0; i < mlist.size(); i++) {
-		cout << mlist.getitem(i) << " ";
+		cout << mlist[i] << " ";
 	}
 	cout << endl;
 }

@@ -113,7 +113,7 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MyList.h" />
+    <ClInclude Include="ListNode.h" />
     <ClInclude Include="MyVector.h" />
     <ClInclude Include="TwoWayList.h" />
   </ItemGroup>

@@ -1,5 +1,5 @@
 #pragma once
-#include "MyList.h"
+#include "ListNode.h"
 
 class TwoWayList
 {
@@ -8,26 +8,28 @@ public:
 	~TwoWayList();
 	void insert(int, int);
 	void erase(int);
+	int operator[](int);
 	void push_back(int);
 	void pop_back();
 	void push_front(int);
 	void pop_front();
-	int getitem(int);
 	int size();
 
 private:
-	MyList* head;
+	ListNode* head;
+	ListNode* tail;
 	int _size;
 };
 
 TwoWayList::TwoWayList()
 {
-	this->head = new MyList();
+	head = new ListNode();
+	tail = head;
 }
 
 TwoWayList::~TwoWayList()
 {
-	MyList* curr = this->head;
+	ListNode* curr = head;
 	while (curr->nxt)
 	{
 		delete curr->prev;
@@ -39,18 +41,19 @@ TwoWayList::~TwoWayList()
 void TwoWayList::insert(int pos, int data)
 {
 	int i = pos+1;
-	MyList* curr = this->head;
+	ListNode* curr = head;
 	while (curr->nxt && i--)
 	{
 		curr = curr->nxt;
 	}
-	MyList* nlist = new MyList(data, nullptr, nullptr);
+	ListNode* nlist = new ListNode(data, nullptr, nullptr);
 	if (!curr->nxt) {
 		curr->nxt = nlist;
 		nlist->prev = curr;
+		tail = nlist;
 	}
 	else {
-		if (curr == this->head) {
+		if (curr == head) {
 			if (curr->nxt) {
 				nlist->nxt = curr->nxt;
 				curr->nxt->prev = nlist;
@@ -65,13 +68,13 @@ void TwoWayList::insert(int pos, int data)
 			curr->prev = nlist;
 		}
 	}
-	this->_size++;
+	_size++;
 }
 
-int TwoWayList::getitem(int pos)
+int TwoWayList::operator[](int pos)
 {
 	int i = pos+1;
-	MyList* curr = this->head;
+	ListNode* curr = head;
 	while (curr->nxt && i--)
 	{
 		curr = curr->nxt;
@@ -86,46 +89,51 @@ int TwoWayList::getitem(int pos)
 void TwoWayList::erase(int pos)
 {
 	int i = pos+1;
-	MyList* curr = this->head;
+	ListNode* curr = head;
 	while (curr->nxt && i--)
 	{
 		curr = curr->nxt;
 	}
 	if (!curr->nxt) {
+		tail = curr->prev;
 		curr->prev->nxt = nullptr;
 	}
 	else {
-		if (curr == this->head) {
+		if (curr == head) {
 			curr = curr->nxt;
 		}
 		curr->prev->nxt = curr->nxt;
 		curr->nxt->prev = curr->prev;
 	}
-	this->_size--;
+	_size--;
 	delete curr;
 }
 
 inline void TwoWayList::push_back(int value)
 {
-	this->insert(this->_size, value);
+	ListNode* nlist = new ListNode(value, nullptr, nullptr);
+	tail->nxt = nlist;
+	nlist->prev = tail;
+	tail = nlist;
+	_size++;
 }
 
 inline void TwoWayList::pop_back()
 {
-	this->erase(this->_size - 1);
+	erase(_size - 1);
 }
 
 inline void TwoWayList::push_front(int value)
 {
-	this->insert(0, value);
+	insert(0, value);
 }
 
 inline void TwoWayList::pop_front()
 {
-	this->erase(0);
+	erase(0);
 }
 
 int TwoWayList::size()
 {
-	return this->_size;
+	return _size;
 }
