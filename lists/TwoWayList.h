@@ -19,6 +19,7 @@ private:
 	ListNode* head;
 	ListNode* tail;
 	int _size;
+	bool verify_position(int);
 };
 
 TwoWayList::TwoWayList()
@@ -40,73 +41,82 @@ TwoWayList::~TwoWayList()
 
 void TwoWayList::insert(int pos, int data)
 {
-	int i = pos+1;
-	ListNode* curr = head;
-	while (curr->nxt && i--)
-	{
-		curr = curr->nxt;
-	}
-	ListNode* nlist = new ListNode(data, nullptr, nullptr);
-	if (!curr->nxt) {
-		curr->nxt = nlist;
-		nlist->prev = curr;
-		tail = nlist;
-	}
-	else {
-		if (curr == head) {
-			if (curr->nxt) {
-				nlist->nxt = curr->nxt;
-				curr->nxt->prev = nlist;
-			}
+	if (!verify_position(pos)) {
+		int i = pos + 1;
+		ListNode* curr = head;
+		while (curr->nxt && i--)
+		{
+			curr = curr->nxt;
+		}
+		ListNode* nlist = new ListNode(data, nullptr, nullptr);
+		if (!curr->nxt) {
 			curr->nxt = nlist;
 			nlist->prev = curr;
+			tail = nlist;
 		}
 		else {
-			nlist->prev = curr->prev;
-			nlist->nxt = curr;
-			curr->prev->nxt = nlist;
-			curr->prev = nlist;
+			if (curr == head) {
+				if (curr->nxt) {
+					nlist->nxt = curr->nxt;
+					curr->nxt->prev = nlist;
+				}
+				curr->nxt = nlist;
+				nlist->prev = curr;
+			}
+			else {
+				nlist->prev = curr->prev;
+				nlist->nxt = curr;
+				curr->prev->nxt = nlist;
+				curr->prev = nlist;
+			}
 		}
+		_size++;
 	}
-	_size++;
+	else throw "Wrong position";
 }
 
 int TwoWayList::operator[](int pos)
 {
-	int i = pos+1;
-	ListNode* curr = head;
-	while (curr->nxt && i--)
-	{
-		curr = curr->nxt;
+	if (!verify_position(pos)){
+		int i = pos + 1;
+		ListNode* curr = head;
+		while (curr->nxt && i--)
+		{
+			curr = curr->nxt;
+		}
+		if (i == -1 && curr->nxt) {
+			return curr->data;
+		}
+		else if (!curr->nxt)
+			return curr->data;
 	}
-	if (i == -1 && curr->nxt) {
-		return curr->data;
-	}
-	else if (!curr->nxt)
-		return curr->data;
+	else throw "Wrong position";
 }
 
 void TwoWayList::erase(int pos)
 {
-	int i = pos+1;
-	ListNode* curr = head;
-	while (curr->nxt && i--)
-	{
-		curr = curr->nxt;
-	}
-	if (!curr->nxt) {
-		tail = curr->prev;
-		curr->prev->nxt = nullptr;
-	}
-	else {
-		if (curr == head) {
+	if (!verify_position(pos)) {
+		int i = pos + 1;
+		ListNode* curr = head;
+		while (curr->nxt && i--)
+		{
 			curr = curr->nxt;
 		}
-		curr->prev->nxt = curr->nxt;
-		curr->nxt->prev = curr->prev;
+		if (!curr->nxt) {
+			tail = curr->prev;
+			curr->prev->nxt = nullptr;
+		}
+		else {
+			if (curr == head) {
+				curr = curr->nxt;
+			}
+			curr->prev->nxt = curr->nxt;
+			curr->nxt->prev = curr->prev;
+		}
+		_size--;
+		delete curr;
 	}
-	_size--;
-	delete curr;
+	else throw "Wrong position";
 }
 
 inline void TwoWayList::push_back(int value)
@@ -136,4 +146,11 @@ inline void TwoWayList::pop_front()
 int TwoWayList::size()
 {
 	return _size;
+}
+
+bool TwoWayList::verify_position(int pos)
+{
+	if (pos >= 0 && pos <= size() + 1)
+		return 0;
+	else return 1;
 }

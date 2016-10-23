@@ -59,19 +59,26 @@ void MyVector::insert(int pos, int data)
 			_size++;
 		}
 	}
+	else throw "Wrong position";
 }
 
 int MyVector::operator[](int pos)
 {
-	return _array[pos];
+	if (!verify_position(pos))
+		return _array[pos];
+	else throw "Wrong position";
 }
 
 void MyVector::erase(int pos)
 {
-	for (int i = pos; i < _size - 1; i++) {
-		_array[i] = _array[i + 1];
+	if (!verify_position(pos)) {
+		for (int i = pos; i < _size - 1; i++) {
+			_array[i] = _array[i + 1];
+		}
+		_size--;
 	}
-	_size--;
+	else throw "Wrong position";
+	
 }
 
 void MyVector::push_back(int value)
