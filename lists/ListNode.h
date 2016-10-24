@@ -1,6 +1,5 @@
 #pragma once
-class ListNode
-{
+class ListNode{
 public:
 	ListNode();
 	ListNode(int, ListNode*, ListNode*);
@@ -14,13 +13,10 @@ ListNode::ListNode(){
 	nxt = prev = nullptr;
 }
 
-ListNode::ListNode(int _data, ListNode* previous, ListNode* next)
-{
+ListNode::ListNode(int _data, ListNode* previous, ListNode* next){
 	data = _data;
 	prev = previous;
 	nxt = next;
 }
 
-ListNode::~ListNode()
-{
-}
+ListNode::~ListNode(){}

@@ -7,8 +7,7 @@ struct myDataException :std::exception {
 	}
 };
 
-class TwoWayList
-{
+class TwoWayList{
 public:
 	TwoWayList();
 	~TwoWayList();
@@ -28,30 +27,25 @@ private:
 	bool verify_position(int);
 };
 
-TwoWayList::TwoWayList()
-{
+TwoWayList::TwoWayList(){
 	head = new ListNode();
 	tail = head;
 }
 
-TwoWayList::~TwoWayList()
-{
+TwoWayList::~TwoWayList(){
 	ListNode* curr = head;
-	while (curr->nxt)
-	{
+	while (curr->nxt){
 		delete curr->prev;
 		curr = curr->nxt;
 	}
 	delete curr;
 }
 
-void TwoWayList::insert(int pos, int data)
-{
-	if (!verify_position(pos)) {
+void TwoWayList::insert(int pos, int data){
+	if (!verify_position(pos)){
 		int i = pos + 1;
 		ListNode* curr = head;
-		while (curr->nxt && i--)
-		{
+		while (curr->nxt && i--){
 			curr = curr->nxt;
 		}
 		ListNode* nlist = new ListNode(data, nullptr, nullptr);
@@ -81,13 +75,11 @@ void TwoWayList::insert(int pos, int data)
 	else throw myDataException();
 }
 
-int TwoWayList::operator[](int pos)
-{
+int TwoWayList::operator[](int pos){
 	if (!verify_position(pos)){
 		int i = pos + 1;
 		ListNode* curr = head;
-		while (curr->nxt && i--)
-		{
+		while (curr->nxt && i--){
 			curr = curr->nxt;
 		}
 		if (i == -1 && curr->nxt) {
@@ -99,13 +91,11 @@ int TwoWayList::operator[](int pos)
 	else throw myDataException();
 }
 
-void TwoWayList::erase(int pos)
-{
+void TwoWayList::erase(int pos){
 	if (!verify_position(pos)) {
 		int i = pos + 1;
 		ListNode* curr = head;
-		while (curr->nxt && i--)
-		{
+		while (curr->nxt && i--){
 			curr = curr->nxt;
 		}
 		if (!curr->nxt) {
@@ -125,8 +115,7 @@ void TwoWayList::erase(int pos)
 	else throw myDataException();
 }
 
-inline void TwoWayList::push_back(int value)
-{
+inline void TwoWayList::push_back(int value){
 	ListNode* nlist = new ListNode(value, nullptr, nullptr);
 	tail->nxt = nlist;
 	nlist->prev = tail;
@@ -134,28 +123,23 @@ inline void TwoWayList::push_back(int value)
 	_size++;
 }
 
-inline void TwoWayList::pop_back()
-{
+inline void TwoWayList::pop_back(){
 	erase(_size - 1);
 }
 
-inline void TwoWayList::push_front(int value)
-{
+inline void TwoWayList::push_front(int value){
 	insert(0, value);
 }
 
-inline void TwoWayList::pop_front()
-{
+inline void TwoWayList::pop_front(){
 	erase(0);
 }
 
-int TwoWayList::size()
-{
+int TwoWayList::size(){
 	return _size;
 }
 
-bool TwoWayList::verify_position(int pos)
-{
+bool TwoWayList::verify_position(int pos){
 	if (pos >= 0 && pos <= size() + 1)
 		return false;
 	else return true;

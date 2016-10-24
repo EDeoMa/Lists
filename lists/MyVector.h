@@ -8,8 +8,7 @@ struct myDataException:std::exception {
 
 const int minimumSize = 10;
 
-class MyVector
-{
+class MyVector{
 public:
 	MyVector();
 	~MyVector();
@@ -28,20 +27,17 @@ private:
 	int* _array;
 };
 
-MyVector::MyVector()
-{
+MyVector::MyVector(){
 	_array = new int[minimumSize];
 	_capacity = minimumSize;
 	_size = 0;
 }
 
-MyVector::~MyVector()
-{
+MyVector::~MyVector(){
 	delete[] _array;
 }
 
-void MyVector::insert(int pos, int data)
-{
+void MyVector::insert(int pos, int data){
 	if (!verify_position(pos)) {
 		if (_capacity == _size) {
 			int* temp_array = new int[_capacity * 2];
@@ -69,15 +65,13 @@ void MyVector::insert(int pos, int data)
 	else throw myDataException();
 }
 
-int MyVector::operator[](int pos)
-{
+int MyVector::operator[](int pos){
 	if (!verify_position(pos))
 		return _array[pos];
 	else throw myDataException();
 }
 
-void MyVector::erase(int pos)
-{
+void MyVector::erase(int pos){
 	if (!verify_position(pos)) {
 		for (int i = pos; i < _size - 1; i++) {
 			_array[i] = _array[i + 1];
@@ -88,28 +82,23 @@ void MyVector::erase(int pos)
 	
 }
 
-void MyVector::push_back(int value)
-{
+void MyVector::push_back(int value){
 	insert(size(), value);
 }
 
-void MyVector::pop_back()
-{
+void MyVector::pop_back(){
 	erase(size()-1);
 }
 
-inline int MyVector::capacity()
-{
+inline int MyVector::capacity(){
 	return _capacity;
 }
 
-inline int MyVector::size()
-{
+inline int MyVector::size(){
 	return _size;
 }
 
-bool MyVector::verify_position(int pos)
-{
+bool MyVector::verify_position(int pos){
 	if (pos>=0 && pos<=capacity()+1 && pos<=size()+1)
 		return false;
 	else return true;
