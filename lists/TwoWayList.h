@@ -1,11 +1,11 @@
 #pragma once
 #include "ListNode.h"
 
-struct myDataException :std::exception {
-	char const *what() const noexcept {
-		return "Wrong position";
-	}
-};
+//struct myDataException:std::exception {
+//	char const *what() const noexcept {
+//		return "Wrong position";
+//	}
+//};
 
 class TwoWayList{
 public:
