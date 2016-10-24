@@ -1,6 +1,12 @@
 #pragma once
 #include "ListNode.h"
 
+struct myDataException :std::exception {
+	char const *what() const noexcept {
+		return "Wrong position";
+	}
+};
+
 class TwoWayList
 {
 public:
@@ -72,7 +78,7 @@ void TwoWayList::insert(int pos, int data)
 		}
 		_size++;
 	}
-	else throw "Wrong position";
+	else throw myDataException();
 }
 
 int TwoWayList::operator[](int pos)
@@ -90,7 +96,7 @@ int TwoWayList::operator[](int pos)
 		else if (!curr->nxt)
 			return curr->data;
 	}
-	else throw "Wrong position";
+	else throw myDataException();
 }
 
 void TwoWayList::erase(int pos)
@@ -116,7 +122,7 @@ void TwoWayList::erase(int pos)
 		_size--;
 		delete curr;
 	}
-	else throw "Wrong position";
+	else throw myDataException();
 }
 
 inline void TwoWayList::push_back(int value)
@@ -151,6 +157,6 @@ int TwoWayList::size()
 bool TwoWayList::verify_position(int pos)
 {
 	if (pos >= 0 && pos <= size() + 1)
-		return 0;
-	else return 1;
+		return false;
+	else return true;
 }

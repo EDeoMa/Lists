@@ -1,4 +1,11 @@
 #pragma once
+
+struct myDataException:std::exception {
+	char const *what() const noexcept {
+		return "Wrong position";
+	}
+};
+
 const int minimumSize = 10;
 
 class MyVector
@@ -59,14 +66,14 @@ void MyVector::insert(int pos, int data)
 			_size++;
 		}
 	}
-	else throw "Wrong position";
+	else throw myDataException();
 }
 
 int MyVector::operator[](int pos)
 {
 	if (!verify_position(pos))
 		return _array[pos];
-	else throw "Wrong position";
+	else throw myDataException();
 }
 
 void MyVector::erase(int pos)
@@ -77,7 +84,7 @@ void MyVector::erase(int pos)
 		}
 		_size--;
 	}
-	else throw "Wrong position";
+	else throw myDataException();
 	
 }
 
@@ -104,6 +111,6 @@ inline int MyVector::size()
 bool MyVector::verify_position(int pos)
 {
 	if (pos>=0 && pos<=capacity()+1 && pos<=size()+1)
-		return 0;
-	else return 1;
+		return false;
+	else return true;
 }
