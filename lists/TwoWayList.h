@@ -110,10 +110,10 @@ void TwoWayList::erase(int pos){
 }
 
 inline void TwoWayList::push_back(int value){
-	ListNode* nlist = new ListNode(value, nullptr, nullptr);
-	_tail->nxt = nlist;
-	nlist->prev = _tail;
-	_tail = nlist;
+	ListNode* newNode = new ListNode(value, nullptr, nullptr);
+	_tail->nxt = newNode;
+	newNode->prev = _tail;
+	_tail = newNode;
 	_size++;
 }
 
