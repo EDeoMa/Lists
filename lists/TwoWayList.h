@@ -15,19 +15,19 @@ public:
 	int size();
 
 private:
-	ListNode* head;
-	ListNode* tail;
+	ListNode* _head;
+	ListNode* _tail;
 	int _size;
 	bool verify_position(int);
 };
 
 TwoWayList::TwoWayList(){
-	head = new ListNode();
-	tail = head;
+	_head = new ListNode();
+	_tail = _head;
 }
 
 TwoWayList::~TwoWayList(){
-	ListNode* curr = head;
+	ListNode* curr = _head;
 	while (curr->nxt){
 		delete curr->prev;
 		curr = curr->nxt;
@@ -38,7 +38,7 @@ TwoWayList::~TwoWayList(){
 void TwoWayList::insert(int pos, int data){
 	if (!verify_position(pos)){
 		int i = pos + 1;
-		ListNode* curr = head;
+		ListNode* curr = _head;
 		while (curr->nxt && i--){
 			curr = curr->nxt;
 		}
@@ -46,10 +46,10 @@ void TwoWayList::insert(int pos, int data){
 		if (!curr->nxt) {
 			curr->nxt = nlist;
 			nlist->prev = curr;
-			tail = nlist;
+			_tail = nlist;
 		}
 		else {
-			if (curr == head) {
+			if (curr == _head) {
 				if (curr->nxt) {
 					nlist->nxt = curr->nxt;
 					curr->nxt->prev = nlist;
@@ -72,7 +72,7 @@ void TwoWayList::insert(int pos, int data){
 int TwoWayList::operator[](int pos){
 	if (!verify_position(pos)){
 		int i = pos + 1;
-		ListNode* curr = head;
+		ListNode* curr = _head;
 		while (curr->nxt && i--){
 			curr = curr->nxt;
 		}
@@ -88,16 +88,16 @@ int TwoWayList::operator[](int pos){
 void TwoWayList::erase(int pos){
 	if (!verify_position(pos)) {
 		int i = pos + 1;
-		ListNode* curr = head;
+		ListNode* curr = _head;
 		while (curr->nxt && i--){
 			curr = curr->nxt;
 		}
 		if (!curr->nxt) {
-			tail = curr->prev;
+			_tail = curr->prev;
 			curr->prev->nxt = nullptr;
 		}
 		else {
-			if (curr == head) {
+			if (curr == _head) {
 				curr = curr->nxt;
 			}
 			curr->prev->nxt = curr->nxt;
@@ -111,9 +111,9 @@ void TwoWayList::erase(int pos){
 
 inline void TwoWayList::push_back(int value){
 	ListNode* nlist = new ListNode(value, nullptr, nullptr);
-	tail->nxt = nlist;
-	nlist->prev = tail;
-	tail = nlist;
+	_tail->nxt = nlist;
+	nlist->prev = _tail;
+	_tail = nlist;
 	_size++;
 }
 
