@@ -1,10 +1,6 @@
 #pragma once
 
-struct myDataException:std::exception {
-	char const *what() const noexcept {
-		return "Wrong position";
-	}
-};
+#include "MyDataException.h"
 
 const int minimumSize = 10;
 

@@ -111,9 +111,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="TwoWayList.cpp" />
+    <ClCompile Include="TwoWayListTests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ListNode.h" />
+    <ClInclude Include="MyDataException.h" />
     <ClInclude Include="MyVector.h" />
     <ClInclude Include="TestFramework.h" />
     <ClInclude Include="TwoWayList.h" />

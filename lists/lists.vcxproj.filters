@@ -18,6 +18,12 @@
     <ClCompile Include="Source.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
+    <ClCompile Include="TwoWayListTests.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="TwoWayList.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TwoWayList.h">
@@ -33,6 +39,9 @@
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
     <ClInclude Include="TestFramework.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="MyDataException.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
   </ItemGroup>
