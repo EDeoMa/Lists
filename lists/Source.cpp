@@ -2,6 +2,7 @@
 #include <iostream>
 #include "MyVector.h"
 #include "TwoWayList.h"
+#include "TwoWayListTests.h"
 
 using namespace std;
 
@@ -29,7 +30,9 @@ void printall(MyVector& mvector, TwoWayList& mlist) {
 }
 
 int  main() {
-	{
+    run_list_tests();
+
+    {
 		MyVector mvector;
 		TwoWayList mlist;
 		int start_clock, time_passed;
