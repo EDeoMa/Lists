@@ -31,10 +31,8 @@ void printall(MyVector& mvector, TwoWayList& mlist) {
 }
 
 int  main() {
-	{
-		run_list_tests();
-		run_vector_tests();
-	}
+	run_list_tests();
+	run_vector_tests();
     {
 		MyVector mvector;
 		TwoWayList mlist;
@@ -52,10 +50,10 @@ int  main() {
 		time_passed = clock() - start_clock;
 		cout << time_passed << endl;
 
-		cout << "Starting with:" << endl<<"Vector: ";
+		/*cout << "Starting with:" << endl<<"Vector: ";
 		print_vector(mvector);
 		cout << "List: ";
-		print_list(mlist);
+		print_list(mlist);*/
 
 		cout << "Front insert:" << endl;
 		start_clock = clock();
