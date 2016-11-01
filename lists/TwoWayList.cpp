@@ -109,7 +109,7 @@ int TwoWayList::size() {
 }
 
 bool TwoWayList::verify_position(int pos) {
-	if (pos >= 0 && pos <= size() + 1)
+	if (pos >= 0 && pos < size() + 1)
 		return false;
 	else return true;
 }

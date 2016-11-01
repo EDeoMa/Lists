@@ -110,6 +110,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="MyVector.cpp" />
+    <ClCompile Include="MyVectorTests.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="TwoWayList.cpp" />
     <ClCompile Include="TwoWayListTests.cpp" />
@@ -118,6 +120,7 @@
     <ClInclude Include="ListNode.h" />
     <ClInclude Include="MyDataException.h" />
     <ClInclude Include="MyVector.h" />
+    <ClInclude Include="MyVectorTests.h" />
     <ClInclude Include="TestFramework.h" />
     <ClInclude Include="TwoWayList.h" />
     <ClInclude Include="TwoWayListTests.h" />

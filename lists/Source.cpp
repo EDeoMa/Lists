@@ -1,12 +1,13 @@
 #include <ctime>
 #include <iostream>
 #include "MyVector.h"
+#include "MyVectorTests.h"
 #include "TwoWayList.h"
 #include "TwoWayListTests.h"
 
 using namespace std;
 
-const int max_element = 100000000;
+const int max_element = 13;
 
 void print_vector(MyVector& mvector) {
 	for (int i = 0; i < mvector.size(); i++) {
@@ -30,8 +31,10 @@ void printall(MyVector& mvector, TwoWayList& mlist) {
 }
 
 int  main() {
-    run_list_tests();
-
+	{
+		run_list_tests();
+		run_vector_tests();
+	}
     {
 		MyVector mvector;
 		TwoWayList mlist;
@@ -49,10 +52,10 @@ int  main() {
 		time_passed = clock() - start_clock;
 		cout << time_passed << endl;
 
-		/*cout << "Starting with:" << endl<<"Vector: ";
+		cout << "Starting with:" << endl<<"Vector: ";
 		print_vector(mvector);
 		cout << "List: ";
-		print_list(mlist);*/
+		print_list(mlist);
 
 		cout << "Front insert:" << endl;
 		start_clock = clock();
