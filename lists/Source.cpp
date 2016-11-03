@@ -7,7 +7,7 @@
 
 using namespace std;
 
-const int max_element = 13;
+const int max_element = 100000000;
 
 void print_vector(MyVector& mvector) {
 	for (int i = 0; i < mvector.size(); i++) {
@@ -32,7 +32,7 @@ void printall(MyVector& mvector, TwoWayList& mlist) {
 
 int  main() {
 	run_list_tests();
-	run_vector_tests();	
+	run_vector_tests();
     {
 		MyVector mvector;
 		TwoWayList mlist;
@@ -50,7 +50,7 @@ int  main() {
 		time_passed = clock() - start_clock;
 		cout << time_passed << endl;
 		
-		printall(mvector, mlist);
+		//printall(mvector, mlist);
 
 		cout << "Front insert:" << endl;
 		start_clock = clock();

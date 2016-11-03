@@ -62,10 +62,19 @@ int TwoWayList::operator[](int pos) {
 
 void TwoWayList::erase(int pos) {
 	if (!verify_position(pos)) {
-		int i = pos + 1;
+		int i;
 		ListNode* curr = _head;
-		while (curr->get_nxt() && i--) {
-			curr = curr->get_nxt();
+		if (_size/2>=pos) {
+			i = pos + 1;
+			while (curr->get_nxt() && i--) {
+				curr = curr->get_nxt();
+			}
+		}
+		else {
+			i = _size - pos;
+			while (curr->get_prev() && i--) {
+				curr = curr->get_prev();
+			}
 		}
 		if (!curr->get_nxt()) {
 			_tail = curr->get_prev();
