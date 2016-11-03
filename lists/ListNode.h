@@ -3,18 +3,15 @@ class ListNode {
 public:
 	ListNode();
 	ListNode(int, ListNode*, ListNode*);
-	int data;
-	ListNode* prev;
-	ListNode* nxt;
+	ListNode* get_prev();
+	ListNode* get_nxt();
+	void set_prev(ListNode*);
+	void set_nxt(ListNode*);
+	int get_data();
+	void set_data(int);
+private:
+	int _data;
+	ListNode* _prev;
+	ListNode* _nxt;
 };
-
-inline ListNode::ListNode() {
-	nxt = prev = nullptr;
-}
-
-inline ListNode::ListNode(int _data, ListNode* previous, ListNode* next) {
-	data = _data;
-	prev = previous;
-	nxt = next;
-}
 

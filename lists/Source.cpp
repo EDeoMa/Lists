@@ -32,7 +32,7 @@ void printall(MyVector& mvector, TwoWayList& mlist) {
 
 int  main() {
 	run_list_tests();
-	run_vector_tests();
+	run_vector_tests();	
     {
 		MyVector mvector;
 		TwoWayList mlist;
@@ -49,11 +49,8 @@ int  main() {
 		}
 		time_passed = clock() - start_clock;
 		cout << time_passed << endl;
-
-		/*cout << "Starting with:" << endl<<"Vector: ";
-		print_vector(mvector);
-		cout << "List: ";
-		print_list(mlist);*/
+		
+		printall(mvector, mlist);
 
 		cout << "Front insert:" << endl;
 		start_clock = clock();
@@ -65,8 +62,6 @@ int  main() {
 		time_passed = clock() - start_clock;
 		cout << time_passed << endl;
 
-		//printall(mvector, mlist);
-
 		cout << "Middle insert:" << endl;
 		start_clock = clock();
 		mvector.insert(ceil(mvector.size() / 2), 100);
@@ -76,8 +71,6 @@ int  main() {
 		mlist.insert(ceil(mlist.size() / 2), 100);
 		time_passed = clock() - start_clock;
 		cout << time_passed << endl;
-
-		//printall(mvector, mlist);
 
 		cout << "Back insert:" << endl;
 		start_clock = clock();
@@ -89,8 +82,6 @@ int  main() {
 		time_passed = clock() - start_clock;
 		cout << time_passed << endl;
 
-		//printall(mvector, mlist);
-
 		cout << "Front erase:" << endl;
 		start_clock = clock();
 		mvector.erase(0);
@@ -100,8 +91,6 @@ int  main() {
 		mlist.pop_front();
 		time_passed = clock() - start_clock;
 		cout << time_passed << endl;
-
-		//printall(mvector, mlist);
 
 		cout << "Middle erase:" << endl;
 		start_clock = clock();
@@ -113,8 +102,6 @@ int  main() {
 		time_passed = clock() - start_clock;
 		cout << time_passed << endl;
 
-		//printall(mvector, mlist);
-
 		cout << "Back erase:" << endl;
 		start_clock = clock();
 		mvector.pop_back();
@@ -124,8 +111,6 @@ int  main() {
 		mlist.pop_back();
 		time_passed = clock() - start_clock;
 		cout << time_passed << endl;
-
-		//printall(mvector, mlist);
 	}
 	system("Pause");
 	return 0;

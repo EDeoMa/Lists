@@ -3,9 +3,9 @@
 
 TwoWayList::~TwoWayList() {
 	ListNode* curr = _head;
-	while (curr->nxt) {
-		delete curr->prev;
-		curr = curr->nxt;
+	while (curr->get_nxt()) {
+		delete curr->get_prev();
+		curr = curr->get_nxt();
 	}
 	delete curr;
 }
@@ -14,29 +14,29 @@ void TwoWayList::insert(int pos, int data) {
 	if (!verify_position(pos)) {
 		int i = pos + 1;
 		ListNode* curr = _head;
-		while (curr->nxt && i--) {
-			curr = curr->nxt;
+		while (curr->get_nxt() && i--) {
+			curr = curr->get_nxt();
 		}
 		ListNode* nlist = new ListNode(data, nullptr, nullptr);
-		if (!curr->nxt) {
-			curr->nxt = nlist;
-			nlist->prev = curr;
+		if (!curr->get_nxt()) {
+			curr->set_nxt(nlist);
+			nlist->set_prev(curr);
 			_tail = nlist;
 		}
 		else {
 			if (curr == _head) {
-				if (curr->nxt) {
-					nlist->nxt = curr->nxt;
-					curr->nxt->prev = nlist;
+				if (curr->get_nxt()) {
+					nlist->set_nxt(curr->get_nxt());
+					curr->get_nxt()->set_prev(nlist);
 				}
-				curr->nxt = nlist;
-				nlist->prev = curr;
+				curr->set_nxt(nlist);
+				nlist->set_prev(curr);
 			}
 			else {
-				nlist->prev = curr->prev;
-				nlist->nxt = curr;
-				curr->prev->nxt = nlist;
-				curr->prev = nlist;
+				nlist->set_prev(curr->get_prev());
+				nlist->set_nxt(curr);
+				curr->get_prev()->set_nxt(nlist);
+				curr->set_prev(nlist);
 			}
 		}
 		_size++;
@@ -48,14 +48,14 @@ int TwoWayList::operator[](int pos) {
 	if (!verify_position(pos)) {
 		int i = pos + 1;
 		ListNode* curr = _head;
-		while (curr->nxt && i--) {
-			curr = curr->nxt;
+		while (curr->get_nxt() && i--) {
+			curr = curr->get_nxt();
 		}
-		if (i == -1 && curr->nxt) {
-			return curr->data;
+		if (i == -1 && curr->get_nxt()) {
+			return curr->get_data();
 		}
-		else if (!curr->nxt)
-			return curr->data;
+		else if (!curr->get_nxt())
+			return curr->get_data();
 	}
 	else throw myDataException();
 }
@@ -64,19 +64,19 @@ void TwoWayList::erase(int pos) {
 	if (!verify_position(pos)) {
 		int i = pos + 1;
 		ListNode* curr = _head;
-		while (curr->nxt && i--) {
-			curr = curr->nxt;
+		while (curr->get_nxt() && i--) {
+			curr = curr->get_nxt();
 		}
-		if (!curr->nxt) {
-			_tail = curr->prev;
-			curr->prev->nxt = nullptr;
+		if (!curr->get_nxt()) {
+			_tail = curr->get_prev();
+			curr->get_prev()->set_nxt(nullptr);
 		}
 		else {
 			if (curr == _head) {
-				curr = curr->nxt;
+				curr = curr->get_nxt();
 			}
-			curr->prev->nxt = curr->nxt;
-			curr->nxt->prev = curr->prev;
+			curr->get_prev()->set_nxt(curr->get_nxt());
+			curr->get_nxt()->set_prev(curr->get_prev());
 		}
 		_size--;
 		delete curr;
@@ -86,8 +86,8 @@ void TwoWayList::erase(int pos) {
 
 void TwoWayList::push_back(int value) {
 	ListNode* newNode = new ListNode(value, nullptr, nullptr);
-	_tail->nxt = newNode;
-	newNode->prev = _tail;
+	_tail->set_nxt(newNode);
+	newNode->set_prev(_tail);
 	_tail = newNode;
 	_size++;
 }
