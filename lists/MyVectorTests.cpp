@@ -88,7 +88,7 @@ void test_vector_pop_back() {
 	mvector.pop_back();
 
 	// Assert
-	assert_equals(9, mvector.size());
+	assert_equals(8, mvector[mvector.size()-1]);
 }
 
 void run_vector_tests() {
