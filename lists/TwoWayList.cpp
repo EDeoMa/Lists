@@ -60,8 +60,9 @@ int TwoWayList::operator[](int pos) {
 	else throw myDataException();
 }
 
-void TwoWayList::erase(int pos) {
+int TwoWayList::erase(int pos) {
 	if (!verify_position(pos)) {
+		int res=operator[](pos);
 		int i;
 		ListNode* curr = _head;
 		if (_size/2>=pos) {
@@ -89,6 +90,7 @@ void TwoWayList::erase(int pos) {
 		}
 		_size--;
 		delete curr;
+		return res;
 	}
 	else throw myDataException();
 }
@@ -101,16 +103,16 @@ void TwoWayList::push_back(int value) {
 	_size++;
 }
 
-void TwoWayList::pop_back() {
-	erase(_size - 1);
+int TwoWayList::pop_back() {
+	return erase(_size - 1);
 }
 
 void TwoWayList::push_front(int value) {
 	insert(0, value);
 }
 
-void TwoWayList::pop_front() {
-	erase(0);
+int TwoWayList::pop_front() {
+	return erase(0);
 }
 
 int TwoWayList::size() {

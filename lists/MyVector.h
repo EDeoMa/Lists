@@ -6,11 +6,11 @@ class MyVector{
 public:
 	MyVector();
 	~MyVector();
-	void insert(int, int);
-	void erase(int);
+	void insert(int pos, int data);
+	int erase(int);
 	int operator[] (int);
 	void push_back(int);
-	void pop_back();
+	int pop_back();
 	int capacity();
 	int size();
 

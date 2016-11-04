@@ -7,7 +7,7 @@
 
 using namespace std;
 
-const int max_element = 100000000;
+const int max_element = 14;
 
 void print_vector(MyVector& mvector) {
 	for (int i = 0; i < mvector.size(); i++) {

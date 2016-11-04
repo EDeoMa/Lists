@@ -2,18 +2,42 @@
 #include "TestFramework.h"
 #include "MyVectorTests.h"
 
-void test_vector_capacity() {
+void test_vector_create_new() {
+	// Act
+	MyVector mvector;
+
+	// Assert
+	assert_equals(0, mvector.size());
+}
+
+void test_vector_erase() {
 	// Arrange
 	MyVector mvector;
 
 	// Act
-	assert_equals(0, mvector.size());
-	for (int i = 0; i < 11; i++) {
+	for (int i = 0; i < 10; i++) {
 		mvector.push_back(i);
 	}
+	int i1=mvector[5], i2=mvector.erase(5);
+	// Assert
+	assert_equals(i1, i2);
+	assert_equals(9, mvector.size());
+	assert_equals(6, mvector[5]);
+}
 
+void test_vector_insert() {
+	// Arrange
+	MyVector mvector;
+
+	// Act
+	for (int i = 0; i < 10; i++) {
+		mvector.push_back(i);
+	}
+	mvector.insert(6, 15);
 	// Assert
 	assert_equals(20, mvector.capacity());
+	assert_equals(11, mvector.size());
+	assert_equals(15, mvector[6]);
 }
 
 void test_vector_push_back() {
@@ -68,7 +92,9 @@ void test_vector_pop_back() {
 }
 
 void run_vector_tests() {
-	run_test(test_vector_capacity);
+	run_test(test_vector_create_new);
+	run_test(test_vector_erase);
+	run_test(test_vector_insert);
 	run_test(test_vector_push_back);
 	run_test(test_vector_index_access_throws_on_too_big_index);
 	run_test(test_vector_pop_back);

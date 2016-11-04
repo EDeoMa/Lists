@@ -46,12 +46,14 @@ int MyVector::operator[](int pos) {
 	else throw myDataException();
 }
 
-void MyVector::erase(int pos) {
+int MyVector::erase(int pos) {
 	if (!verify_position(pos)) {
+		int res = operator[](pos);
 		for (int i = pos; i < _size - 1; i++) {
 			_array[i] = _array[i + 1];
 		}
 		_size--;
+		return res;
 	}
 	else throw myDataException();
 
@@ -61,8 +63,8 @@ void MyVector::push_back(int value) {
 	insert(size(), value);
 }
 
-void MyVector::pop_back() {
-	erase(size() - 1);
+int MyVector::pop_back() {
+	return erase(size() - 1);
 }
 
 inline int MyVector::capacity() {
@@ -74,7 +76,7 @@ inline int MyVector::size() {
 }
 
 bool MyVector::verify_position(int pos) {
-	if (pos >= 0 && pos <= capacity()  && pos <= size() )
+	if (pos >= 0 && pos <= capacity()  && pos <= size())
 		return false;
 	else return true;
 }
