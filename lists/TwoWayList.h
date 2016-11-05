@@ -88,7 +88,7 @@ T TwoWayList<T>::operator[](int pos) {
 			return curr->get_data();
 	}
 	else throw myDataException();
-}
+} 
 
 template <class T>
 T TwoWayList<T>::erase(int pos) {
