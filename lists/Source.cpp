@@ -16,14 +16,14 @@ void print_vector(MyVector& mvector) {
 	cout << endl;
 }
 
-void print_list(TwoWayList& mlist) {
+void print_list(TwoWayList<int>& mlist) {
 	for (int i = 0; i < mlist.size(); i++) {
 		cout << mlist[i] << " ";
 	}
 	cout << endl;
 }
 
-void printall(MyVector& mvector, TwoWayList& mlist) {
+void printall(MyVector& mvector, TwoWayList<int>& mlist) {
 	cout << "New:" << endl << "Vector: ";
 	print_vector(mvector);
 	cout << "List: ";
@@ -31,11 +31,11 @@ void printall(MyVector& mvector, TwoWayList& mlist) {
 }
 
 int  main() {
-	run_list_tests();
-	run_vector_tests();
+	/*run_list_tests();
+	run_vector_tests();*/
     {
 		MyVector mvector;
-		TwoWayList mlist;
+		TwoWayList<int> mlist;
 		int start_clock, time_passed;
 		start_clock = clock();
 		for (int i = 0; i <= max_element; i++) {

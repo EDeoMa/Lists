@@ -10,7 +10,7 @@
 */
 void test_push_back_and_index_access() {
 	// Arrange
-	TwoWayList list;
+	TwoWayList<int> list;
 
 	// Act
 	const int SIZE = 10;
@@ -30,7 +30,7 @@ void test_push_back_and_index_access() {
 
 void test_list_create_new() {
 	// Act
-	TwoWayList list;
+	TwoWayList<int> list;
 
 	// Assert
 	assert_equals(0, list.size());
@@ -41,7 +41,7 @@ void test_list_create_new() {
 */
 void test_index_access_throws_on_too_big_index() {
 	// Arrange
-	TwoWayList list;
+	TwoWayList<int> list;
 	const int SIZE = 10;
 	for (int i = 0; i < SIZE; ++i) {
 		list.push_back(i + 10);
@@ -65,7 +65,7 @@ void test_index_access_throws_on_too_big_index() {
 
 void test_list_erase() {
 	// Arrange
-	TwoWayList mlist;
+	TwoWayList<int> mlist;
 
 	// Act
 	for (int i = 0; i < 10; i++) {
@@ -80,7 +80,7 @@ void test_list_erase() {
 
 void test_list_insert() {
 	// Arrange
-	TwoWayList mlist;
+	TwoWayList<int> mlist;
 
 	// Act
 	for (int i = 0; i < 10; i++) {
