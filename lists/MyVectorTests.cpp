@@ -17,10 +17,10 @@ void test_vector_erase() {
 		mvector.push_back(i);
 	}
 	// Act
-	int i1 = mvector[5];
-	int i2 = mvector.erase(5);
+	int result1 = mvector[5];
+	int result2 = mvector.erase(5);
 	// Assert
-	assert_equals(i1, i2);
+	assert_equals(result1, result2);
 	assert_equals(9, mvector.size());
 	assert_equals(6, mvector[5]);
 }

@@ -70,10 +70,10 @@ void test_list_erase() {
 		mlist.push_back(i);
 	}
 	// Act
-	int i1 = mlist[5];
-	int i2 = mlist.erase(5);
+	int result1 = mlist[5];
+	int result2 = mlist.erase(5);
 	// Assert
-	assert_equals(i1, i2);
+	assert_equals(result1, result2);
 	assert_equals(9, mlist.size());
 	assert_equals(6, mlist[5]);
 }
