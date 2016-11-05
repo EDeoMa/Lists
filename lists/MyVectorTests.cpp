@@ -13,12 +13,12 @@ void test_vector_create_new() {
 void test_vector_erase() {
 	// Arrange
 	MyVector mvector;
-
-	// Act
 	for (int i = 0; i < 10; i++) {
 		mvector.push_back(i);
 	}
-	int i1=mvector[5], i2=mvector.erase(5);
+	// Act
+	int i1 = mvector[5];
+	int i2 = mvector.erase(5);
 	// Assert
 	assert_equals(i1, i2);
 	assert_equals(9, mvector.size());
@@ -28,11 +28,10 @@ void test_vector_erase() {
 void test_vector_insert() {
 	// Arrange
 	MyVector mvector;
-
-	// Act
 	for (int i = 0; i < 10; i++) {
 		mvector.push_back(i);
 	}
+	// Act
 	mvector.insert(6, 15);
 	// Assert
 	assert_equals(20, mvector.capacity());
