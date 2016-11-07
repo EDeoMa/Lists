@@ -4,7 +4,7 @@
 
 void test_vector_create_new() {
 	// Act
-	MyVector mvector;
+	MyVector<int> mvector;
 
 	// Assert
 	assert_equals(0, mvector.size());
@@ -12,7 +12,7 @@ void test_vector_create_new() {
 
 void test_vector_erase() {
 	// Arrange
-	MyVector mvector;
+	MyVector<int> mvector;
 	for (int i = 0; i < 10; i++) {
 		mvector.push_back(i);
 	}
@@ -26,7 +26,7 @@ void test_vector_erase() {
 
 void test_vector_insert() {
 	// Arrange
-	MyVector mvector;
+	MyVector<int> mvector;
 	for (int i = 0; i < 10; i++) {
 		mvector.push_back(i);
 	}
@@ -40,7 +40,7 @@ void test_vector_insert() {
 
 void test_vector_push_back() {
 	// Arrange
-	MyVector mvector;
+	MyVector<int> mvector;
 	
 	// Act
 	for (int i = 0; i < 10; i++) {
@@ -54,7 +54,7 @@ void test_vector_push_back() {
 void test_vector_index_access_throws_on_too_big_index() {
 	
 	// Arrange
-	MyVector mvector;
+	MyVector<int> mvector;
 	for (int i = 0; i < 10; i++) {
 		mvector.push_back(i);
 	}
@@ -77,7 +77,7 @@ void test_vector_index_access_throws_on_too_big_index() {
 void test_vector_pop_back() {
 
 	// Arrange
-	MyVector mvector;
+	MyVector<int> mvector;
 	for (int i = 0; i < 10; i++) {
 		mvector.push_back(i);
 	}

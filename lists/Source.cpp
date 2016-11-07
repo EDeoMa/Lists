@@ -9,7 +9,7 @@ using namespace std;
 
 const int max_element = 14;
 
-void print_vector(MyVector& mvector) {
+void print_vector(MyVector<int>& mvector) {
 	for (int i = 0; i < mvector.size(); i++) {
 		cout << mvector[i] << " ";
 	}
@@ -23,7 +23,7 @@ void print_list(TwoWayList<int>& mlist) {
 	cout << endl;
 }
 
-void printall(MyVector& mvector, TwoWayList<int>& mlist) {
+void printall(MyVector<int>& mvector, TwoWayList<int>& mlist) {
 	cout << "New:" << endl << "Vector: ";
 	print_vector(mvector);
 	cout << "List: ";
@@ -31,10 +31,10 @@ void printall(MyVector& mvector, TwoWayList<int>& mlist) {
 }
 
 int  main() {
-	/*run_list_tests();
-	run_vector_tests();*/
+	run_list_tests();
+	run_vector_tests();
     {
-		MyVector mvector;
+		MyVector<int> mvector;
 		TwoWayList<int> mlist;
 		int start_clock, time_passed;
 		start_clock = clock();
