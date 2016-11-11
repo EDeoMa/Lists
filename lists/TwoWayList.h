@@ -2,7 +2,8 @@
 #include "ListNode.h"
 #include "MyDataException.h"
 
-template <class T> class TwoWayList{
+template <class T>
+class TwoWayList{
 public:
 	TwoWayList();
 	~TwoWayList();

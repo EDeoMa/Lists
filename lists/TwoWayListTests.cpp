@@ -25,7 +25,6 @@ void test_push_back_and_index_access() {
 	{
 		assert_equals(i + 10, list[i]);
 	}
-
 }
 
 void test_list_create_new() {

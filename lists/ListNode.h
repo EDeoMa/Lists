@@ -1,5 +1,6 @@
 #pragma once
-template <class T> class ListNode {
+template <class T>
+class ListNode {
 public:
 	ListNode();
 	ListNode(T, ListNode<T>* previous, ListNode<T>* next);
